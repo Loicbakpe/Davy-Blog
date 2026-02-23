@@ -3,187 +3,218 @@
 @section('title', $post->title)
 
 @section('meta')
-    <meta name="description" content="{{ Str::limit($post->excerpt, 150) }}">
+    <meta name="description" content="{{ $post->excerpt }}">
     <meta property="og:title" content="{{ $post->title }}">
-    <meta property="og:description" content="{{ Str::limit($post->excerpt, 150) }}">
+    <meta property="og:description" content="{{ $post->excerpt }}">
     @if($post->cover_image)
         <meta property="og:image" content="{{ asset('storage/' . $post->cover_image) }}">
     @endif
 @endsection
 
 @section('content')
-<!-- Article Header -->
-<div class="relative w-full h-64 md:h-96 lg:h-[32rem] bg-gray-900 overflow-hidden">
+<!-- En-tête de l'article avec effet visuel -->
+<div class="relative w-full overflow-hidden bg-surface-darker pt-16">
     @if($post->cover_image)
-        <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="absolute inset-0 w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 z-0">
+            <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover opacity-40 blur-sm scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-darker via-surface-darker/80 to-transparent"></div>
+        </div>
     @else
-        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-slate-900 opacity-90"></div>
+        <!-- Fallback pattern -->
+        <div class="absolute inset-0 z-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LSAyNTUtIDI1NSwgMC4wNSkiLz48L3N2Zz4=')]"></div>
     @endif
-    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
-    
-    <div class="absolute inset-0 flex flex-col justify-end">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 md:pb-16 pt-32">
-            <div class="flex items-center gap-3 mb-6">
-                <a href="{{ route('categories.show', $post->category) }}" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-colors" style="border-left: 4px solid {{ $post->category->color }}">
-                    {{ $post->category->name }}
-                </a>
-                <span class="text-gray-300 text-sm flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    {{ ceil(str_word_count(strip_tags($post->body)) / 200) }} min de lecture
-                </span>
-                <span class="text-gray-300 text-sm flex items-center gap-2 ml-4">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                    {{ $post->views }} vues
-                </span>
-            </div>
-            
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 font-serif leading-tight">
-                {{ $post->title }}
-            </h1>
-            
-            <div class="flex items-center text-gray-200">
-                <div class="h-12 w-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg border-2 border-white/20">
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 pb-12 lg:pt-24 lg:pb-16 text-center">
+        <!-- Catégorie -->
+        <a href="{{ route('categories.show', $post->category) }}" class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-bold shadow-soft mb-8 bg-surface-dark/50 backdrop-blur-md border border-white/10 hover:bg-surface-dark transition-colors" style="color: {{ $post->category->color }}">
+            <span class="w-2.5 h-2.5 rounded-full mr-2 shadow-sm" style="background-color: {{ $post->category->color }}"></span>
+            {{ $post->category->name }}
+        </a>
+        
+        <!-- Titre -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 font-serif leading-tight tracking-tight shadow-sm">{{ $post->title }}</h1>
+        
+        <!-- Méta Infos -->
+        <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-300 font-medium">
+            <div class="flex items-center gap-3 bg-surface-dark/50 px-4 py-2 rounded-2xl backdrop-blur-sm border border-white/5">
+                <div class="h-8 w-8 rounded-full bg-primary-900/50 flex items-center justify-center text-primary-300 font-bold border border-white/10">
                     {{ substr($post->user->name, 0, 1) }}
                 </div>
-                <div class="ml-4">
-                    <p class="font-medium text-white text-lg">{{ $post->user->name }}</p>
-                    <p class="text-sm text-gray-400">Publié le {{ $post->published_at->format('d M Y') }}</p>
+                <span class="text-white">{{ $post->user->name }}</span>
+            </div>
+            
+            <div class="flex items-center gap-6 bg-surface-dark/50 px-5 py-2 rounded-2xl backdrop-blur-sm border border-white/5">
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <time datetime="{{ $post->published_at }}">{{ $post->published_at->format('d M Y') }}</time>
+                </div>
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    <span>{{ ceil(str_word_count(strip_tags($post->body)) / 200) }} min</span>
+                </div>
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    <span>{{ number_format($post->views) }}</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="bg-white dark:bg-slate-900 py-16 -mt-10">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 relative z-20 rounded-t-3xl pt-8">
-        
-        <!-- Extrait -->
-        <div class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 font-serif italic mb-12 leading-relaxed border-l-4 border-indigo-500 pl-6 py-2">
-            {{ $post->excerpt }}
-        </div>
-
-        <!-- Corps de l'article -->
-        <article class="prose prose-lg md:prose-xl dark:prose-invert prose-indigo mx-auto font-serif">
-            {!! nl2br(e($post->body)) !!}
-        </article>
-
-        <!-- Tags -->
-        @if($post->tags->count() > 0)
-        <div class="mt-16 pt-8 border-t border-gray-100 dark:border-slate-800 flex flex-wrap gap-2 items-center">
-            <span class="text-sm font-semibold text-gray-900 dark:text-white mr-2 uppercase tracking-wider">Tags :</span>
-            @foreach($post->tags as $tag)
-                <a href="{{ route('tags.show', $tag) }}" class="px-3 py-1 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 text-sm rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
-                    #{{ $tag->name }}
-                </a>
-            @endforeach
-        </div>
-        @endif
-
-        <!-- Partage (Faux liens pour l'instant) -->
-        <div class="mt-10 flex gap-4">
-            <button class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-            </button>
-            <button class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-800 text-white hover:bg-blue-900 transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
-            </button>
-        </div>
-
-    </div>
-</div>
-
-<!-- Section Commentaires -->
-<div class="bg-gray-50 dark:bg-slate-800/50 py-16 border-t border-gray-100 dark:border-slate-800">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 font-serif">Commentaires ({{ $post->comments->count() }})</h3>
-
-        <!-- Formulaire -->
-        @auth
-            @if(session('status'))
-                <div class="bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 p-4 rounded-xl mb-6 flex items-center gap-3 border border-green-200 dark:border-green-800/50">
-                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                    {{ session('status') }}
-                </div>
-            @endif
-            <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-700 mb-10">
-                <form action="{{ route('posts.comments.store', $post) }}" method="POST">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="body" class="sr-only">Votre commentaire</label>
-                        <textarea id="body" name="body" rows="3" required class="w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400" placeholder="Partagez vos impressions..."></textarea>
-                        @error('body')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-full font-medium shadow-sm hover:bg-indigo-700 transition">Publier</button>
-                    </div>
-                </form>
-            </div>
-        @else
-            <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-6 border border-indigo-100 dark:border-indigo-500/30 mb-10 text-center">
-                <p class="text-indigo-800 dark:text-indigo-300 mb-4">Vous devez être connecté pour laisser un commentaire.</p>
-                <div class="flex justify-center gap-4">
-                    <a href="{{ route('login') }}" class="px-5 py-2 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-slate-600 rounded-full font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition">Connexion</a>
-                    <a href="{{ route('register') }}" class="px-5 py-2 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition">Inscription</a>
-                </div>
-            </div>
-        @endauth
-
-        <!-- Liste -->
-        <div class="space-y-6">
-            @forelse($post->comments as $comment)
-                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-700">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center">
-                            <div class="h-10 w-10 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center text-gray-600 dark:text-gray-300 font-bold">
-                                {{ substr($comment->user->name, 0, 1) }}
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-bold text-gray-900 dark:text-white">{{ $comment->user->name }}</p>
-                                <time class="text-xs text-gray-500 dark:text-gray-400" datetime="{{ $comment->created_at }}">{{ $comment->created_at->diffForHumans() }}</time>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line">{{ $comment->body }}</p>
-                </div>
-            @empty
-                <p class="text-gray-500 dark:text-gray-400 italic">Aucun commentaire pour l'instant. Soyez le premier !</p>
-            @endforelse
-        </div>
-    </div>
-</div>
-
-<!-- Articles Similaires -->
-@if($relatedPosts->count() > 0)
-<div class="bg-white dark:bg-slate-900 py-16">
+<div class="bg-surface-light dark:bg-surface-darker pb-20 pt-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 font-serif text-center">Vous aimerez aussi</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach($relatedPosts as $related)
-            <article class="group">
-                <a href="{{ route('posts.show', $related) }}" class="block relative h-48 w-full rounded-2xl overflow-hidden bg-gray-200 dark:bg-slate-800 mb-4">
-                    @if($related->cover_image)
-                        <img src="{{ asset('storage/' . $related->cover_image) }}" alt="{{ $related->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    @else
-                        <div class="w-full h-full flex items-center justify-center text-gray-400 dark:text-slate-600">
-                            <svg class="w-10 h-10 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        </div>
-                    @endif
-                    <div class="absolute top-3 left-3">
-                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold backdrop-blur-md bg-white/90 shadow-sm" style="color: {{ $related->category->color }}">
-                            {{ $related->category->name }}
-                        </span>
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            
+            <!-- Colonne Principale (Image, Contenu, Commentaires) -->
+            <div class="lg:col-span-8 lg:w-2/3 max-w-4xl mx-auto w-full">
+                
+                <!-- Image de couverture (Clean, intégrée différemment de la vignette floue) -->
+                @if($post->cover_image)
+                    <div class="w-full h-80 md:h-[30rem] rounded-[2rem] overflow-hidden shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-12 -mt-16 relative z-20">
+                        <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                     </div>
-                </a>
-                <h4 class="text-lg font-bold text-gray-900 dark:text-white font-serif group-hover:text-indigo-600 transition-colors line-clamp-2">
-                    <a href="{{ route('posts.show', $related) }}">{{ $related->title }}</a>
-                </h4>
-            </article>
-            @endforeach
+                @endif
+
+                <!-- Excerpt (Mise en avant) -->
+                <div class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-serif leading-relaxed italic mb-10 pl-6 border-l-4 border-primary-500">
+                    {{ $post->excerpt }}
+                </div>
+
+                <!-- Corps de l'article -->
+                <div class="prose prose-lg md:prose-xl dark:prose-invert prose-primary max-w-none prose-img:rounded-[1.5rem] prose-headings:font-serif prose-a:text-primary-600 dark:prose-a:text-primary-400 mb-16">
+                    {!! str($post->body)->markdown() !!}
+                </div>
+
+                <!-- Footer de l'article : Tags et Partage -->
+                <div class="flex flex-col sm:flex-row items-center justify-between py-6 border-t border-b border-gray-100 dark:border-white/5 mb-16 gap-6">
+                    <!-- Tags -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-sm font-bold text-gray-900 dark:text-white mr-2 uppercase tracking-wide">Tags :</span>
+                        @forelse($post->tags as $tag)
+                            <a href="{{ route('tags.show', $tag) }}" class="inline-flex items-center px-3 py-1 bg-gray-50 dark:bg-surface-dark border border-gray-200 dark:border-white/5 text-gray-600 dark:text-gray-400 text-xs font-semibold rounded-lg hover:border-primary-500 hover:text-primary-600 transition-colors">
+                                #{{ $tag->name }}
+                            </a>
+                        @empty
+                            <span class="text-sm text-gray-500 italic">Aucun tag</span>
+                        @endforelse
+                    </div>
+
+                    <!-- Boutons Partage -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-bold text-gray-900 dark:text-white mr-2 uppercase tracking-wide">Partager :</span>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 dark:bg-surface-dark border border-gray-200 dark:border-white/5 flex items-center justify-center text-gray-500 hover:text-blue-500 hover:border-blue-500 transition-all" title="Partager sur Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 dark:bg-surface-dark border border-gray-200 dark:border-white/5 flex items-center justify-center text-gray-500 hover:text-blue-700 hover:border-blue-700 transition-all" title="Partager sur Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section des commentaires -->
+                <div id="comments" class="scroll-mt-24">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-8 flex items-center gap-3">
+                        Commentaires
+                        <span class="bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 px-3 py-1 rounded-xl text-base font-bold">{{ $post->comments->count() }}</span>
+                    </h2>
+
+                    <!-- Formulaire -->
+                    @auth
+                        @if(session('status'))
+                            <div class="bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 p-4 rounded-xl mb-6 flex items-center gap-3 border border-green-200 dark:border-green-800/50">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <div class="bg-white dark:bg-surface-dark rounded-[1.5rem] p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-10">
+                            <form action="{{ route('posts.comments.store', $post) }}" method="POST">
+                                @csrf
+                                <div class="mb-4">
+                                    <label for="body" class="sr-only">Votre commentaire</label>
+                                    <textarea id="body" name="body" rows="3" required class="w-full rounded-xl border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-surface-darker text-gray-900 dark:text-white focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400 resize-none shadow-sm" placeholder="Partagez vos impressions..."></textarea>
+                                    @error('body')
+                                        <p class="text-accent-500 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="flex justify-end">
+                                    <button type="submit" class="px-6 py-2 bg-primary-600 text-white rounded-xl font-bold text-sm shadow-md hover:bg-primary-700 transition-colors">Publier le commentaire</button>
+                                </div>
+                            </form>
+                        </div>
+                    @else
+                        <div class="bg-gray-50 dark:bg-surface-dark rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/5 text-center mb-10">
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Rejoignez la discussion avec la communauté Davy Blog.</p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="{{ route('login') }}" class="px-6 py-2.5 bg-white xl:bg-surface-darker text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 shadow-sm rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                    Se connecter
+                                </a>
+                                <a href="{{ route('register') }}" class="px-6 py-2.5 bg-primary-600 text-white rounded-xl font-bold shadow-[0_4px_14px_0_rgba(124,58,237,0.39)] hover:bg-primary-700 transition-colors">
+                                    Créer un compte
+                                </a>
+                            </div>
+                        </div>
+                    @endauth
+
+                    <!-- Liste des commentaires -->
+                    <div class="space-y-6">
+                        @forelse($post->comments as $comment)
+                        <div class="bg-white dark:bg-surface-dark p-6 rounded-[1.5rem] border border-gray-100 dark:border-white/5 shadow-soft dark:shadow-soft-dark">
+                            <div class="flex items-center gap-4 mb-4 border-b border-gray-50 dark:border-white/5 pb-4">
+                                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-700 dark:text-primary-300 font-bold border border-white dark:border-surface-dark ring-2 ring-transparent">
+                                    {{ substr($comment->user->name, 0, 1) }}
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 dark:text-white">{{ $comment->user->name }}</h4>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">il y a {{ $comment->created_at->diffForHumans() }}</p>
+                                </div>
+                            </div>
+                            <div class="prose prose-sm dark:prose-invert text-gray-700 dark:text-gray-300">
+                                <p>{{ $comment->body }}</p>
+                            </div>
+                        </div>
+                        @empty
+                        <div class="text-center py-12 text-gray-500 dark:text-gray-400 italic">
+                            Soyez le premier à commenter cet article.
+                        </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne Latérale (Articles Relatifs) -->
+            <div class="lg:col-span-4 lg:w-1/3 space-y-8 mt-16 lg:mt-0">
+                <div class="sticky top-28 bg-white dark:bg-surface-dark rounded-[2rem] p-6 sm:p-8 border border-gray-100 dark:border-white/5 shadow-soft dark:shadow-soft-dark">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 font-serif">Dans la même catégorie</h3>
+                    
+                    @if($relatedPosts->count() > 0)
+                        <div class="flex flex-col gap-6">
+                            @foreach($relatedPosts as $related)
+                            <a href="{{ route('posts.show', $related) }}" class="group block border-b border-gray-100 dark:border-white/5 pb-6 last:border-0 last:pb-0">
+                                <h4 class="font-bold text-gray-900 dark:text-white mb-2 leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                    {{ $related->title }}
+                                </h4>
+                                <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                                    <time>{{ $related->published_at->format('d/m/Y') }}</time>
+                                    <span class="mx-2">&bull;</span>
+                                    <span>{{ $related->views }} vues</span>
+                                </div>
+                            </a>
+                            @endforeach
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-100 dark:border-white/5 text-center">
+                            <a href="{{ route('categories.show', $post->category) }}" class="text-sm font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 transition flex items-center justify-center gap-1 group">
+                                Voir plus de {{ $post->category->name }}
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </div>
+                    @else
+                        <p class="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
+                            Aucun autre article dans cette catégorie pour le moment.
+                        </p>
+                    @endif
+            </div>
+
         </div>
     </div>
 </div>
-@endif
-
 @endsection
