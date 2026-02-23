@@ -37,10 +37,12 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold text-2xl shadow-glow transition-transform group-hover:scale-105">
-                            D
+                        <!-- Stylized Textual Logo -->
+                        <div class="relative flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 border border-primary-200 dark:border-primary-700/50 shadow-sm transition-transform group-hover:scale-105">
+                            <span class="font-serif italic font-bold text-3xl text-primary-600 dark:text-primary-400 leading-none">D</span>
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-accent-500 shadow-glow"></div>
                         </div>
-                        <span class="font-bold text-xl tracking-tight text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Davy Blog</span>
+                        <span class="font-serif text-2xl tracking-tight text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Davy.</span>
                     </a>
                 </div>
 
@@ -123,11 +125,14 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8">
                 <div class="md:col-span-1 lg:col-span-1">
                     <a href="{{ route('home') }}" class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold text-xl shadow-glow">D</div>
-                        <span class="font-bold text-xl tracking-tight text-gray-900 dark:text-white">Davy Blog</span>
+                        <div class="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 border border-primary-200 dark:border-primary-700/50 shadow-sm">
+                            <span class="font-serif italic font-bold text-2xl text-primary-600 dark:text-primary-400 leading-none">D</span>
+                            <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-accent-500 shadow-glow"></div>
+                        </div>
+                        <span class="font-serif text-xl tracking-tight text-gray-900 dark:text-white">Davy.</span>
                     </a>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
-                        Conçu avec passion et élégance pour offrir la meilleure expérience de lecture autour du développement web moderne.
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6 italic">
+                        Plumes, récits et émotions. Bienvenue dans l'univers littéraire de Davy. Espace de partage, de chroniques et de découvertes romanesques.
                     </p>
                 </div>
                 
@@ -142,7 +147,7 @@
                 <div class="md:col-span-2">
                     <div class="bg-gray-50 dark:bg-white/5 rounded-2xl p-6 border border-gray-100 dark:border-white/5">
                         <h3 class="font-bold text-gray-900 dark:text-white mb-2">Restez informé</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Rejoignez la newsletter pour ne manquer aucun article ou tutoriel majeur.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Rejoignez la newsletter pour ne manquer aucune publication, dédicace ou nouvelle sortie.</p>
                         <form class="flex relative">
                             <input type="email" placeholder="votre@email.com" class="w-full pl-4 pr-32 py-3 rounded-xl border-gray-200 dark:border-white/10 bg-white dark:bg-surface-darker text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm shadow-sm transition-all outline-none">
                             <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary-600 hover:bg-primary-700 text-white px-5 rounded-lg text-sm font-medium shadow-md transition-all">S'inscrire</button>
@@ -153,7 +158,7 @@
             
             <div class="border-t border-gray-100 dark:border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-sm text-gray-400 dark:text-gray-500">
-                    &copy; {{ date('Y') }} Davy Blog. Design raffiné avec Laravel & Tailwind.
+                    &copy; {{ date('Y') }} Séverine Davy. Tous droits réservés.
                 </p>
                 <div class="flex space-x-5">
                     <!-- GitHub -->
