@@ -7,7 +7,27 @@
 
     <title>@yield('title', 'Davy Blog') - Davy Blog</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="@yield('meta_description', 'Plumes, récits et émotions. Bienvenue dans l\'univers littéraire de Davy.')">
+    <link rel="canonical" href="@yield('canonical', url()->current())">
+
+    <!-- Open Graph (Facebook, LinkedIn…) -->
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:title" content="@yield('og_title', config('app.name', 'Davy Blog'))">
+    <meta property="og:description" content="@yield('og_description', 'Plumes, récits et émotions. Bienvenue dans l\'univers littéraire de Davy.')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-default.jpg'))">
+    <meta property="og:site_name" content="{{ config('app.name', 'Davy Blog') }}">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('og_title', config('app.name', 'Davy Blog'))">
+    <meta name="twitter:description" content="@yield('og_description', 'Plumes, récits et émotions. Bienvenue dans l\'univers littéraire de Davy.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/og-default.jpg'))">
+
     @yield('meta')
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
