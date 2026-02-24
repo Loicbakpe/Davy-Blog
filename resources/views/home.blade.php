@@ -15,15 +15,15 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-28 md:pt-32 md:pb-40 flex flex-col items-center text-center">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-primary-600 dark:bg-primary-900/30 dark:text-primary-300 mb-6 ring-1 ring-inset ring-primary-500/20">
-            Design & Code
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-bold shadow-soft mb-6 bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 mx-auto text-primary-600 dark:text-primary-400 font-serif italic">
+            Bienvenue dans mon univers
         </span>
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 font-serif max-w-4xl leading-[1.1]">
-            L'élégance du <br class="hidden sm:block">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500">Développement Web</span>
+            Fragments de vie et <br class="hidden sm:block">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500">Chroniques Romanesques</span>
         </h1>
-        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 font-sans leading-relaxed max-w-2xl">
-            Plongez au cœur de l'écosystème Laravel avec des tutoriels détaillés, des astuces d'architecture et des réflexions sur le design UI/UX moderne.
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 font-serif italic leading-relaxed max-w-2xl text-center">
+            Installez-vous confortablement. Découvrez mes inspirations, plongez dans l'envers du décor de l'écriture et suivez l'actualité de mes parutions.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
             <a href="#recent-posts" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-medium rounded-2xl text-white bg-primary-600 hover:bg-primary-700 shadow-[0_4px_14px_0_rgba(124,58,237,0.39)] hover:shadow-[0_6px_20px_rgba(124,58,237,0.23)] hover:-translate-y-0.5 transition-all duration-200">
@@ -140,8 +140,8 @@
                     </article>
                     @empty
                     <div class="text-center py-20 px-6 rounded-[2rem] border-2 border-dashed border-gray-200 dark:border-white/10">
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white font-serif">Aucun article publié.</h3>
-                        <p class="mt-2 text-gray-500 dark:text-gray-400">Revenez très bientôt pour découvrir nos contenus.</p>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white font-serif">Aucun texte pour l'instant.</h3>
+                        <p class="mt-2 text-gray-500 dark:text-gray-400">Revenez très bientôt pour découvrir mes prochains récits.</p>
                     </div>
                     @endforelse
                 </div>
@@ -192,9 +192,9 @@
                     <div class="absolute bottom-0 left-0 -ml-8 -mb-8 w-24 h-24 rounded-full bg-accent-400 opacity-20 blur-xl"></div>
                     
                     <div class="relative z-10">
-                        <h3 class="text-xl font-bold mb-3 font-serif">Abonnez-vous</h3>
+                        <h3 class="text-xl font-bold mb-3 font-serif">Le Club des Lecteurs</h3>
                         <p class="text-primary-100 text-sm mb-6 leading-relaxed">
-                            Recevez les meilleurs articles de développement web, tutos Laravel, directement dans votre boîte de réception. Sans spam.
+                            Restez informé(e) de mes prochaines sorties littéraires, des séances de dédicaces exclusives, et plongez dans les coulisses de l'écriture en rejoignant la communauté.
                         </p>
                         <form class="space-y-3">
                             <div>

@@ -3,13 +3,18 @@
 @section('title', $post->title)
 
 @section('meta')
-    <meta name="description" content="{{ $post->excerpt }}">
-    <meta property="og:title" content="{{ $post->title }}">
-    <meta property="og:description" content="{{ $post->excerpt }}">
-    @if($post->cover_image)
-        <meta property="og:image" content="{{ asset('storage/' . $post->cover_image) }}">
-    @endif
+@section('meta_description', $post->excerpt)
+@section('og_type', 'article')
+@section('og_title', $post->title . ' — Davy Blog')
+@section('og_description', $post->excerpt)
+@if($post->cover_image)
+    @section('og_image', asset('storage/' . $post->cover_image))
+@endif
+    <meta property="article:published_time" content="{{ $post->published_at->toIso8601String() }}">
+    <meta property="article:author" content="{{ $post->user->name }}">
+    <meta property="article:section" content="{{ $post->category->name }}">
 @endsection
+
 
 @section('content')
 <!-- En-tête de l'article avec effet visuel -->

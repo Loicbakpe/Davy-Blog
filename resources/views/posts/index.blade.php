@@ -12,7 +12,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 font-serif tracking-tight">Le Blog</h1>
         <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Découvrez nos derniers articles, tutoriels et réflexions sur le développement web, l'écosystème Laravel et bien plus encore.
+            Découvrez mes chroniques, réflexions et fragments d'écriture. Entrez dans l'univers d'une plume qui raconte le monde.
         </p>
     </div>
 </div>

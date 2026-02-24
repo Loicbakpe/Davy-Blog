@@ -20,7 +20,10 @@
         <!-- Sidebar -->
         <aside class="w-64 bg-gray-900 dark:bg-black text-white flex-shrink-0 flex flex-col transition-all duration-300">
             <div class="flex items-center justify-center h-16 border-b border-gray-800">
-                <a href="{{ route('dashboard') }}" class="text-xl font-bold tracking-wider uppercase">Davy Admin</a>
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
+                    <span class="font-serif italic font-bold text-2xl text-indigo-400">D</span>
+                    <span class="font-serif text-xl tracking-wide text-white">Davy<span class="text-indigo-400">.</span> Admin</span>
+                </a>
             </div>
             <nav class="flex-1 overflow-y-auto pt-4 pb-4">
                 <ul class="space-y-1">
@@ -142,5 +145,6 @@
             </div>
         </main>
     </div>
+    @stack('scripts')
 </body>
 </html>

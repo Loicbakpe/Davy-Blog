@@ -37,8 +37,8 @@
                 </div>
 
                 <div>
-                    <label for="body" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Contenu <span class="text-red-500">*</span></label>
-                    <textarea name="body" id="body" rows="15" required
+                    <label for="markdown-editor" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Contenu <span class="text-red-500">*</span></label>
+                    <textarea name="body" id="markdown-editor" rows="15" required
                         class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 font-mono text-sm">{{ old('body', $post->body) }}</textarea>
                     @error('body')
                         <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -141,3 +141,7 @@
     </form>
 </div>
 @endsection
+
+@push('scripts')
+@vite('resources/js/editor.js')
+@endpush
