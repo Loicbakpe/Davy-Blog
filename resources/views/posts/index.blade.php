@@ -154,8 +154,9 @@
                         </div>
                         <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 font-serif">Ne manquez rien</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Inscrivez-vous à notre newsletter mensuelle.</p>
-                        <form class="space-y-3">
-                            <input type="email" placeholder="votre@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-surface-darker focus:ring-2 focus:ring-primary-500 text-sm outline-none">
+                        <form action="{{ route('newsletter.store') }}" method="POST" class="space-y-3">
+                            @csrf
+                            <input type="email" name="email" required placeholder="votre@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-surface-darker focus:ring-2 focus:ring-primary-500 text-sm outline-none text-gray-900 dark:text-white">
                             <button type="submit" class="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-primary-600 dark:hover:bg-primary-500 px-4 py-3 rounded-xl text-sm font-bold transition-colors">S'inscrire</button>
                         </form>
                     </div>

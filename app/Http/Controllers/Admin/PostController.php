@@ -24,6 +24,7 @@ class PostController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Post::class);
         $categories = Category::orderBy('name')->get();
         $tags = Tag::orderBy('name')->get();
         return view('admin.posts.create', compact('categories', 'tags'));
@@ -31,6 +32,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', Post::class);
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
@@ -67,6 +69,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         $categories = Category::orderBy('name')->get();
         $tags = Tag::orderBy('name')->get();
         return view('admin.posts.edit', compact('post', 'categories', 'tags'));
@@ -74,6 +77,7 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update', $post);
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
@@ -120,6 +124,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         // Supprimer l'image de couverture associée
         if ($post->cover_image) {
             Storage::disk('public')->delete($post->cover_image);

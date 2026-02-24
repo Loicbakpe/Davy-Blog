@@ -16,6 +16,9 @@ use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Public
+use App\Http\Controllers\SitemapController;
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
 Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('posts.show');
@@ -23,6 +26,7 @@ Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->na
 Route::get('/tag/{tag:slug}', [TagController::class, 'show'])->name('tags.show');
 
 Route::post('/blog/{post:slug}/comments', [CommentController::class, 'store'])->name('posts.comments.store')->middleware('auth');
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 Route::view('/a-propos', 'about')->name('about');
 
 // Espace Admin protégé
@@ -33,7 +37,9 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
     Route::resource('tags', AdminTagController::class);
     Route::resource('comments', AdminCommentController::class)->only(['index', 'destroy']);
     Route::patch('comments/{comment}/approve', [AdminCommentController::class, 'approve'])->name('comments.approve');
-    Route::resource('users', AdminUserController::class);
+    Route::resource('users', UserController::class)->except(['show'])->names('admin.users');
+    Route::get('subscribers', [AdminSubscriberController::class, 'index'])->name('admin.subscribers.index');
+    Route::delete('subscribers/{subscriber}', [AdminSubscriberController::class, 'destroy'])->name('admin.subscribers.destroy');
 });
 
 // Profile utilisateur (utilisé par admin et utilisateurs normaux)
