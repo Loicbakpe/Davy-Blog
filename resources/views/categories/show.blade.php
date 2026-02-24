@@ -53,7 +53,7 @@
                 </div>
 
                 <!-- Nuage de tags -->
-                <div class="bg-gray-50 dark:bg-surface-dark rounded-[2rem] p-8 border border-gray-100 dark:border-white/5">
+                <div class="bg-gray-50 dark:bg-surface-dark rounded-3xl p-8 border border-gray-100 dark:border-white/5">
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 font-serif">Tags populaires</h3>
                     <div class="flex flex-wrap gap-2">
                         @foreach($tags as $t)
@@ -65,7 +65,7 @@
                 </div>
                 
                 <!-- Newsletter Minimaliste -->
-                <div class="bg-white dark:bg-surface-dark rounded-[2rem] p-8 border border-primary-100 dark:border-primary-900/30 shadow-soft dark:shadow-soft-dark text-center relative overflow-hidden">
+                <div class="bg-white dark:bg-surface-dark rounded-3xl p-8 border border-primary-100 dark:border-primary-900/30 shadow-soft dark:shadow-soft-dark text-center relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary-50 dark:bg-primary-900/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
                     <div class="relative z-10">
                         <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-2xl flex items-center justify-center mx-auto mb-4">

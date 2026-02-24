@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend Public
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -38,9 +41,9 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
     Route::resource('tags', AdminTagController::class);
     Route::resource('comments', AdminCommentController::class)->only(['index', 'destroy']);
     Route::patch('comments/{comment}/approve', [AdminCommentController::class, 'approve'])->name('comments.approve');
-    Route::resource('users', UserController::class)->except(['show'])->names('admin.users');
-    Route::get('subscribers', [AdminSubscriberController::class, 'index'])->name('admin.subscribers.index');
-    Route::delete('subscribers/{subscriber}', [AdminSubscriberController::class, 'destroy'])->name('admin.subscribers.destroy');
+    Route::resource('users', AdminUserController::class)->except(['show'])->names('users');
+    Route::get('subscribers', [AdminSubscriberController::class, 'index'])->name('subscribers.index');
+    Route::delete('subscribers/{subscriber}', [AdminSubscriberController::class, 'destroy'])->name('subscribers.destroy');
 });
 
 // Profile utilisateur (utilisé par admin et utilisateurs normaux)

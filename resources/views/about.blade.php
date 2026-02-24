@@ -25,8 +25,8 @@
 <section class="py-16 lg:py-24 bg-surface-light dark:bg-surface-darker -mt-8 relative z-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="bg-white dark:bg-surface-dark rounded-[2rem] p-8 md:p-12 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-16 relative overflow-hidden">
-            <div class="prose prose-lg md:prose-xl dark:prose-invert prose-primary mx-auto prose-img:rounded-[1.5rem] prose-headings:font-serif">
+        <div class="bg-white dark:bg-surface-dark rounded-3xl p-8 md:p-12 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-16 relative overflow-hidden">
+            <div class="prose prose-lg md:prose-xl dark:prose-invert prose-primary mx-auto prose-img:rounded-2xl prose-headings:font-serif">
                 <p class="lead text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed mb-8">
                     Bienvenue dans mon espace de création. Je suis <strong>Davy</strong>, romancière passionnée par les mots et les histoires qui nous transcendent. Ce blog est un pont entre vous et moi.
                 </p>
@@ -73,7 +73,7 @@
         </div>
 
         <!-- Call to Action Box -->
-        <div class="bg-gradient-to-br from-primary-900 to-surface-darker rounded-[2rem] p-10 md:p-12 text-center relative overflow-hidden shadow-soft-dark text-white border border-primary-800/50">
+        <div class="bg-gradient-to-br from-primary-900 to-surface-darker rounded-3xl p-10 md:p-12 text-center relative overflow-hidden shadow-soft-dark text-white border border-primary-800/50">
             <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-10"></div>
             <div class="relative z-10">
                 <div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/20">

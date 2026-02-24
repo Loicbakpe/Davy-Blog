@@ -25,7 +25,7 @@
             <div class="lg:col-span-8">
                 
                 <!-- Barre d'outils (Recherche texte & Stats) -->
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4 bg-white dark:bg-surface-dark rounded-[1.5rem] p-4 sm:p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4 bg-white dark:bg-surface-dark rounded-2xl p-4 sm:p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5">
                     <div class="text-gray-600 dark:text-gray-400 font-medium text-sm">
                         <span class="text-gray-900 dark:text-white font-bold bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 px-3 py-1 rounded-lg">{{ $posts->total() }}</span> articles publiés
                     </div>
@@ -53,7 +53,7 @@
                 <!-- Grille des articles -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     @forelse($posts as $post)
-                    <article class="bg-white dark:bg-surface-dark rounded-[1.5rem] shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
+                    <article class="bg-white dark:bg-surface-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
                         <a href="{{ route('posts.show', $post) }}" class="relative h-56 w-full overflow-hidden bg-gray-100 dark:bg-surface-darker block shrink-0">
                             @if($post->cover_image)
                                 <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -100,7 +100,7 @@
                         </div>
                     </article>
                     @empty
-                    <div class="col-span-full text-center py-20 px-6 rounded-[2rem] border-2 border-dashed border-gray-200 dark:border-white/10">
+                    <div class="col-span-full text-center py-20 px-6 rounded-3xl border-2 border-dashed border-gray-200 dark:border-white/10">
                         <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-slate-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5L18.5 7M4 6h16M4 10h16M4 14h16"></path></svg>
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white font-serif">Aucun article trouvé.</h3>
                         <p class="mt-2 text-gray-500 dark:text-gray-400">Essayez de modifier vos critères de recherche.</p>
@@ -138,7 +138,7 @@
                 </div>
 
                 <!-- Nuage de tags -->
-                <div class="bg-gray-50 dark:bg-surface-dark rounded-[2rem] p-8 border border-gray-100 dark:border-white/5">
+                <div class="bg-gray-50 dark:bg-surface-dark rounded-3xl p-8 border border-gray-100 dark:border-white/5">
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 font-serif">Tags populaires</h3>
                     <div class="flex flex-wrap gap-2">
                         @foreach($tags as $tag)
@@ -150,7 +150,7 @@
                 </div>
                 
                 <!-- Newsletter Minimaliste -->
-                <div class="bg-white dark:bg-surface-dark rounded-[2rem] p-8 border border-primary-100 dark:border-primary-900/30 shadow-soft dark:shadow-soft-dark text-center relative overflow-hidden">
+                <div class="bg-white dark:bg-surface-dark rounded-3xl p-8 border border-primary-100 dark:border-primary-900/30 shadow-soft dark:shadow-soft-dark text-center relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary-50 dark:bg-primary-900/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
                     <div class="relative z-10">
                         <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-2xl flex items-center justify-center mx-auto mb-4">

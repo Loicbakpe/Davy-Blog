@@ -22,7 +22,7 @@
         <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
             <!-- Avatar -->
             <div class="relative shrink-0">
-                <div class="w-32 h-32 md:w-48 md:h-48 rounded-[2rem] overflow-hidden shadow-soft dark:shadow-soft-dark border-4 border-white dark:border-surface-dark ring-1 ring-gray-100 dark:ring-white/5 bg-white dark:bg-surface-dark flex items-center justify-center">
+                <div class="w-32 h-32 md:w-48 md:h-48 rounded-3xl overflow-hidden shadow-soft dark:shadow-soft-dark border-4 border-white dark:border-surface-dark ring-1 ring-gray-100 dark:ring-white/5 bg-white dark:bg-surface-dark flex items-center justify-center">
                     @if($user->avatar)
                         <img src="{{ asset('storage/' . $user->avatar) }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
                     @else
@@ -89,7 +89,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse($posts as $post)
-            <article class="bg-white dark:bg-surface-dark rounded-[1.5rem] shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
+            <article class="bg-white dark:bg-surface-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
                 <a href="{{ route('posts.show', $post) }}" class="relative h-52 w-full overflow-hidden bg-gray-100 dark:bg-surface-darker block shrink-0">
                     @if($post->cover_image)
                         <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -122,7 +122,7 @@
                 </div>
             </article>
             @empty
-            <div class="col-span-full text-center py-20 px-6 rounded-[2rem] border-2 border-dashed border-gray-200 dark:border-white/10">
+            <div class="col-span-full text-center py-20 px-6 rounded-3xl border-2 border-dashed border-gray-200 dark:border-white/10">
                 <p class="text-gray-500 dark:text-gray-400 font-serif text-lg">Cet auteur n'a pas encore publié d'articles.</p>
             </div>
             @endforelse

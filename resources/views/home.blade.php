@@ -54,7 +54,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($featuredPosts as $post)
-            <article class="bg-white dark:bg-surface-dark rounded-[1.5rem] shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
+            <article class="bg-white dark:bg-surface-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
                 <div class="relative h-56 lg:h-64 w-full overflow-hidden bg-gray-100 dark:bg-surface-darker">
                     @if($post->cover_image)
                         <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -112,7 +112,7 @@
 
                 <div class="space-y-8">
                     @forelse($recentPosts as $post)
-                    <article class="group relative flex flex-col sm:flex-row gap-6 items-start p-4 sm:p-6 rounded-[1.5rem] bg-white dark:bg-surface-dark border border-transparent hover:border-gray-100 dark:hover:border-white/5 hover:shadow-soft dark:hover:shadow-soft-dark transition-all duration-300">
+                    <article class="group relative flex flex-col sm:flex-row gap-6 items-start p-4 sm:p-6 rounded-2xl bg-white dark:bg-surface-dark border border-transparent hover:border-gray-100 dark:hover:border-white/5 hover:shadow-soft dark:hover:shadow-soft-dark transition-all duration-300">
                         <div class="w-full sm:w-48 h-48 sm:h-auto sm:aspect-square shrink-0">
                             <div class="relative w-full h-full rounded-2xl overflow-hidden bg-gray-100 dark:bg-surface-darker">
                                 @if($post->cover_image)
@@ -143,7 +143,7 @@
                         </div>
                     </article>
                     @empty
-                    <div class="text-center py-20 px-6 rounded-[2rem] border-2 border-dashed border-gray-200 dark:border-white/10">
+                    <div class="text-center py-20 px-6 rounded-3xl border-2 border-dashed border-gray-200 dark:border-white/10">
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white font-serif">Aucun texte pour l'instant.</h3>
                         <p class="mt-2 text-gray-500 dark:text-gray-400">Revenez très bientôt pour découvrir mes prochains récits.</p>
                     </div>

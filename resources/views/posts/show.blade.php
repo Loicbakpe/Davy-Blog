@@ -79,7 +79,7 @@
                 
                 <!-- Image de couverture (Clean, intégrée différemment de la vignette floue) -->
                 @if($post->cover_image)
-                    <div class="w-full h-80 md:h-[30rem] rounded-[2rem] overflow-hidden shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-12 -mt-16 relative z-20">
+                    <div class="w-full h-80 md:h-[30rem] rounded-3xl overflow-hidden shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-12 -mt-16 relative z-20">
                         <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                     </div>
                 @endif
@@ -90,12 +90,12 @@
                 </div>
 
                 <!-- Corps de l'article -->
-                <div class="prose prose-lg md:prose-xl dark:prose-invert prose-primary max-w-none prose-img:rounded-[1.5rem] prose-headings:font-serif prose-a:text-primary-600 dark:prose-a:text-primary-400 mb-16">
+                <div class="prose prose-lg md:prose-xl dark:prose-invert prose-primary max-w-none prose-img:rounded-2xl prose-headings:font-serif prose-a:text-primary-600 dark:prose-a:text-primary-400 mb-16">
                     {!! str($post->body)->markdown() !!}
                 </div>
 
                 <!-- À propos de l'auteur -->
-                <div class="bg-gray-50 dark:bg-surface-dark rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-white/5 mb-16 relative overflow-hidden">
+                <div class="bg-gray-50 dark:bg-surface-dark rounded-3xl p-8 md:p-10 border border-gray-100 dark:border-white/5 mb-16 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl -mr-10 -mt-10"></div>
                     <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
                         <div class="shrink-0">
@@ -164,7 +164,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <div class="bg-white dark:bg-surface-dark rounded-[1.5rem] p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-10">
+                        <div class="bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 mb-10">
                             <form action="{{ route('posts.comments.store', $post) }}" method="POST">
                                 @csrf
                                 <div class="mb-4">
@@ -180,7 +180,7 @@
                             </form>
                         </div>
                     @else
-                        <div class="bg-gray-50 dark:bg-surface-dark rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/5 text-center mb-10">
+                        <div class="bg-gray-50 dark:bg-surface-dark rounded-2xl p-8 border border-gray-100 dark:border-white/5 text-center mb-10">
                             <p class="text-gray-600 dark:text-gray-400 mb-4">Rejoignez la discussion avec la communauté Davy Blog.</p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                                 <a href="{{ route('login') }}" class="px-6 py-2.5 bg-white xl:bg-surface-darker text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 shadow-sm rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
@@ -196,7 +196,7 @@
                     <!-- Liste des commentaires -->
                     <div class="space-y-6">
                         @forelse($post->comments as $comment)
-                        <div class="bg-white dark:bg-surface-dark p-6 rounded-[1.5rem] border border-gray-100 dark:border-white/5 shadow-soft dark:shadow-soft-dark">
+                        <div class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-soft dark:shadow-soft-dark">
                             <div class="flex items-center gap-4 mb-4 border-b border-gray-50 dark:border-white/5 pb-4">
                                 <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-700 dark:text-primary-300 font-bold border border-white dark:border-surface-dark ring-2 ring-transparent">
                                     {{ substr($comment->user->name, 0, 1) }}
@@ -221,7 +221,7 @@
 
             <!-- Colonne Latérale (Articles Relatifs) -->
             <div class="lg:col-span-4 lg:w-1/3 space-y-8 mt-16 lg:mt-0">
-                <div class="sticky top-28 bg-white dark:bg-surface-dark rounded-[2rem] p-6 sm:p-8 border border-gray-100 dark:border-white/5 shadow-soft dark:shadow-soft-dark">
+                <div class="sticky top-28 bg-white dark:bg-surface-dark rounded-3xl p-6 sm:p-8 border border-gray-100 dark:border-white/5 shadow-soft dark:shadow-soft-dark">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 font-serif">Dans la même catégorie</h3>
                     
                     @if($relatedPosts->count() > 0)

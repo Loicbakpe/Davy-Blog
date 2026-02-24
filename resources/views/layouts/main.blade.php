@@ -44,7 +44,12 @@
         }
     </script>
 </head>
-<body class="font-sans antialiased text-gray-800 bg-surface-light dark:bg-surface-darker dark:text-gray-200 flex flex-col min-h-screen transition-colors duration-300">
+<body class="font-sans antialiased text-gray-800 bg-surface-light dark:bg-surface-darker dark:text-gray-200 flex flex-col min-h-screen transition-colors duration-300 relative">
+    <!-- Visual Persona Background -->
+    <div class="fixed top-0 left-0 w-full h-[600px] pointer-events-none z-0 overflow-hidden opacity-10 dark:opacity-[0.07]">
+        <img src="{{ asset('images/bg-african-writer.png') }}" alt="" class="w-full h-full object-cover object-top">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light dark:via-surface-darker/50 dark:to-surface-darker"></div>
+    </div>
 
     <!-- Header -->
     <header x-data="{ open: false, scrolled: false }" 

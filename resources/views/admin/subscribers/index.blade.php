@@ -3,7 +3,7 @@
 @section('header', 'Liste des Abonnés')
 
 @section('content')
-<div class="bg-white dark:bg-gray-800 rounded-[1.5rem] shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden">
+<div class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden">
     <div class="px-6 py-5 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white font-serif">Abonnés à la Newsletter</h2>
         <div class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold">
