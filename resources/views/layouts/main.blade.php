@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Davy Blog') - Davy Blog</title>
+    <title>@hasSection('title') @yield('title') | {{ config('app.name', 'Davy') }} @else {{ config('app.name', 'Davy') }} — Fragments & Chroniques @endif</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="@yield('meta_description', 'Plumes, récits et émotions. Bienvenue dans l\'univers littéraire de Davy.')">
@@ -133,6 +133,29 @@
 
     <!-- Main Content -->
     <main class="flex-grow pt-16 md:pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+            @if (session('success'))
+                <div class="bg-green-100 dark:bg-green-900/30 border border-green-400 dark:border-green-800 text-green-700 dark:text-green-300 px-4 py-3 rounded-2xl relative mb-4 shadow-soft" role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
+            
+            @if (session('error'))
+                <div class="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded-2xl relative mb-4 shadow-soft" role="alert">
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded-2xl relative mb-4 shadow-soft" role="alert">
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
         @yield('content')
     </main>
 
@@ -168,8 +191,9 @@
                     <div class="bg-gray-50 dark:bg-white/5 rounded-2xl p-6 border border-gray-100 dark:border-white/5">
                         <h3 class="font-bold text-gray-900 dark:text-white mb-2">Restez informé</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Rejoignez la newsletter pour ne manquer aucune publication, dédicace ou nouvelle sortie.</p>
-                        <form class="flex relative">
-                            <input type="email" placeholder="votre@email.com" class="w-full pl-4 pr-32 py-3 rounded-xl border-gray-200 dark:border-white/10 bg-white dark:bg-surface-darker text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm shadow-sm transition-all outline-none">
+                        <form action="{{ route('newsletter.store') }}" method="POST" class="flex relative">
+                            @csrf
+                            <input type="email" name="email" required placeholder="votre@email.com" class="w-full pl-4 pr-32 py-3 rounded-xl border-gray-200 dark:border-white/10 bg-white dark:bg-surface-darker text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm shadow-sm transition-all outline-none">
                             <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary-600 hover:bg-primary-700 text-white px-5 rounded-lg text-sm font-medium shadow-md transition-all">S'inscrire</button>
                         </form>
                     </div>

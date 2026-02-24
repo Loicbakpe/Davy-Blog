@@ -196,9 +196,10 @@
                         <p class="text-primary-100 text-sm mb-6 leading-relaxed">
                             Restez informé(e) de mes prochaines sorties littéraires, des séances de dédicaces exclusives, et plongez dans les coulisses de l'écriture en rejoignant la communauté.
                         </p>
-                        <form class="space-y-3">
+                        <form action="{{ route('newsletter.store') }}" method="POST" class="space-y-3">
+                            @csrf
                             <div>
-                                <input type="email" placeholder="votre@email.com" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-primary-200 focus:ring-2 focus:ring-white focus:border-transparent text-sm backdrop-blur-sm">
+                                <input type="email" name="email" required placeholder="votre@email.com" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-primary-200 focus:ring-2 focus:ring-white focus:border-transparent text-sm backdrop-blur-sm">
                             </div>
                             <button type="submit" class="w-full bg-white text-primary-700 hover:bg-primary-50 px-4 py-3 rounded-xl text-sm font-bold transition-colors shadow-sm">
                                 Je m'abonne
