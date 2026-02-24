@@ -78,14 +78,18 @@
                     <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-6 flex-grow leading-relaxed">
                         {{ $post->excerpt }}
                     </p>
-                    <div class="flex items-center mt-auto pt-4 relative z-20 pointer-events-none">
-                        <div class="h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-700 dark:text-primary-300 font-bold text-sm ring-2 ring-white dark:ring-surface-dark">
-                            {{ substr($post->user->name, 0, 1) }}
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $post->user->name }}</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ ceil(str_word_count(strip_tags($post->body)) / 200) }} min de lecture</p>
-                        </div>
+                    <div class="flex flex-wrap items-center gap-6 text-sm text-gray-300 font-medium">
+                        <a href="{{ route('authors.show', $post->user) }}" class="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-2xl backdrop-blur-md border border-white/10 hover:bg-white/20 transition-all">
+                            <div class="h-8 w-8 rounded-full bg-primary-900/50 flex items-center justify-center text-primary-300 font-bold border border-white/10 overflow-hidden shadow-sm">
+                                @if($post->user->avatar)
+                                    <img src="{{ asset('storage/' . $post->user->avatar) }}" alt="{{ $post->user->name }}" class="w-full h-full object-cover">
+                                @else
+                                    {{ substr($post->user->name, 0, 1) }}
+                                @endif
+                            </div>
+                            <span class="text-white">{{ $post->user->name }}</span>
+                        </a>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ ceil(str_word_count(strip_tags($post->body)) / 200) }} min de lecture</p>
                     </div>
                 </div>
             </article>
@@ -133,8 +137,8 @@
                             <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 leading-relaxed mb-4">
                                 {{ $post->excerpt }}
                             </p>
-                            <div class="mt-auto flex items-center gap-2">
-                                <span class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ $post->user->name }}</span>
+                            <div class="mt-auto flex items-center gap-2 relative z-20">
+                                <a href="{{ route('authors.show', $post->user) }}" class="text-sm font-medium text-gray-900 dark:text-gray-200 hover:text-primary-600 transition-colors">{{ $post->user->name }}</a>
                             </div>
                         </div>
                     </article>

@@ -41,12 +41,16 @@
         
         <!-- Méta Infos -->
         <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-300 font-medium">
-            <div class="flex items-center gap-3 bg-surface-dark/50 px-4 py-2 rounded-2xl backdrop-blur-sm border border-white/5">
-                <div class="h-8 w-8 rounded-full bg-primary-900/50 flex items-center justify-center text-primary-300 font-bold border border-white/10">
-                    {{ substr($post->user->name, 0, 1) }}
-                </div>
-                <span class="text-white">{{ $post->user->name }}</span>
-            </div>
+                <a href="{{ route('authors.show', $post->user) }}" class="flex items-center gap-3 bg-surface-dark/50 px-4 py-2 rounded-2xl backdrop-blur-sm border border-white/5 hover:bg-surface-dark transition-colors">
+                    <div class="h-8 w-8 rounded-full bg-primary-900/50 flex items-center justify-center text-primary-300 font-bold border border-white/10 overflow-hidden">
+                        @if($post->user->avatar)
+                            <img src="{{ asset('storage/' . $post->user->avatar) }}" alt="{{ $post->user->name }}" class="w-full h-full object-cover">
+                        @else
+                            {{ substr($post->user->name, 0, 1) }}
+                        @endif
+                    </div>
+                    <span class="text-white">{{ $post->user->name }}</span>
+                </a>
             
             <div class="flex items-center gap-6 bg-surface-dark/50 px-5 py-2 rounded-2xl backdrop-blur-sm border border-white/5">
                 <div class="flex items-center">
@@ -88,6 +92,35 @@
                 <!-- Corps de l'article -->
                 <div class="prose prose-lg md:prose-xl dark:prose-invert prose-primary max-w-none prose-img:rounded-[1.5rem] prose-headings:font-serif prose-a:text-primary-600 dark:prose-a:text-primary-400 mb-16">
                     {!! str($post->body)->markdown() !!}
+                </div>
+
+                <!-- À propos de l'auteur -->
+                <div class="bg-gray-50 dark:bg-surface-dark rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-white/5 mb-16 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+                        <div class="shrink-0">
+                            <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-soft border-4 border-white dark:border-surface-dark bg-white dark:bg-surface-dark flex items-center justify-center">
+                                @if($post->user->avatar)
+                                    <img src="{{ asset('storage/' . $post->user->avatar) }}" alt="{{ $post->user->name }}" class="w-full h-full object-cover">
+                                @else
+                                    <span class="text-3xl font-bold text-primary-500 uppercase">{{ substr($post->user->name, 0, 1) }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <span class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2 block">À propos de l'auteur</span>
+                            <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 font-serif line-clamp-1">
+                                <a href="{{ route('authors.show', $post->user) }}" class="hover:text-primary-600 transition-colors">{{ $post->user->name }}</a>
+                            </h4>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 font-serif italic line-clamp-3">
+                                {{ $post->user->bio ?? "Passionnée par les mots et les histoires qui voyagent." }}
+                            </p>
+                            <a href="{{ route('authors.show', $post->user) }}" class="inline-flex items-center text-sm font-bold text-primary-600 dark:text-primary-400 hover:gap-2 transition-all">
+                                Voir tous ses articles
+                                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Footer de l'article : Tags et Partage -->
