@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -19,11 +20,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'slug',
         'email',
         'password',
         'role',
         'avatar',
         'bio',
+        'website_url',
+        'twitter_url',
+        'facebook_url',
+        'instagram_url',
     ];
 
     /**
@@ -57,5 +63,17 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Generate a unique slug before creating.
+     */
+    protected static function booted(): void
+    {
+        static::creating(function ($user) {
+            if (!$user->slug) {
+                $user->slug = Str::slug($user->name);
+            }
+        });
     }
 }

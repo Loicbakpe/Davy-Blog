@@ -16,10 +16,11 @@ use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Public
-use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\AuthorController;
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/auteur/{user:slug}', [AuthorController::class, 'show'])->name('authors.show');
 Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
 Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');

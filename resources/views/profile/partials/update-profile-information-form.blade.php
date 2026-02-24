@@ -13,12 +13,29 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
+        <div class="flex items-center gap-6 mb-6">
+            <div class="shrink-0">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-soft border-4 border-white dark:border-gray-800 bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                    @if($user->avatar)
+                        <img src="{{ asset('storage/' . $user->avatar) }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
+                    @else
+                        <span class="text-2xl font-bold text-primary-500 uppercase">{{ substr($user->name, 0, 1) }}</span>
+                    @endif
+                </div>
+            </div>
+            <div>
+                <x-input-label for="avatar" :value="__('Photo de profil')" />
+                <input id="avatar" name="avatar" type="file" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100 dark:file:bg-primary-900/30 dark:file:text-primary-400" />
+                <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+            </div>
+        </div>
+
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nom')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
@@ -45,6 +62,38 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div>
+            <x-input-label for="bio" :value="__('Biographie')" />
+            <textarea id="bio" name="bio" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" rows="4">{{ old('bio', $user->bio) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <x-input-label for="website_url" :value="__('Site Web (URL)')" />
+                <x-text-input id="website_url" name="website_url" type="url" class="mt-1 block w-full" :value="old('website_url', $user->website_url)" placeholder="https://..." />
+                <x-input-error class="mt-2" :messages="$errors->get('website_url')" />
+            </div>
+
+            <div>
+                <x-input-label for="twitter_url" :value="__('Lien X / Twitter (URL)')" />
+                <x-text-input id="twitter_url" name="twitter_url" type="url" class="mt-1 block w-full" :value="old('twitter_url', $user->twitter_url)" placeholder="https://x.com/..." />
+                <x-input-error class="mt-2" :messages="$errors->get('twitter_url')" />
+            </div>
+
+            <div>
+                <x-input-label for="facebook_url" :value="__('Lien Facebook (URL)')" />
+                <x-text-input id="facebook_url" name="facebook_url" type="url" class="mt-1 block w-full" :value="old('facebook_url', $user->facebook_url)" placeholder="https://facebook.com/..." />
+                <x-input-error class="mt-2" :messages="$errors->get('facebook_url')" />
+            </div>
+
+            <div>
+                <x-input-label for="instagram_url" :value="__('Lien Instagram (URL)')" />
+                <x-text-input id="instagram_url" name="instagram_url" type="url" class="mt-1 block w-full" :value="old('instagram_url', $user->instagram_url)" placeholder="https://instagram.com/..." />
+                <x-input-error class="mt-2" :messages="$errors->get('instagram_url')" />
+            </div>
         </div>
 
         <div class="flex items-center gap-4">

@@ -81,13 +81,17 @@
                                 {{ $post->excerpt }}
                             </p>
                             
-                            <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50 dark:border-white/5 relative z-20 pointer-events-none">
-                                <div class="flex items-center gap-3">
-                                    <div class="h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-700 dark:text-primary-400 font-bold text-xs ring-2 ring-white dark:ring-surface-dark">
-                                        {{ substr($post->user->name, 0, 1) }}
+                            <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50 dark:border-white/5 relative z-20">
+                                <a href="{{ route('authors.show', $post->user) }}" class="flex items-center gap-3 group/author">
+                                    <div class="h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-700 dark:text-primary-400 font-bold text-xs ring-2 ring-white dark:ring-surface-dark overflow-hidden group-hover/author:ring-primary-500 transition-all">
+                                        @if($post->user->avatar)
+                                            <img src="{{ asset('storage/' . $post->user->avatar) }}" alt="{{ $post->user->name }}" class="w-full h-full object-cover">
+                                        @else
+                                            {{ substr($post->user->name, 0, 1) }}
+                                        @endif
                                     </div>
-                                    <span class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ $post->user->name }}</span>
-                                </div>
+                                    <span class="text-sm font-medium text-gray-900 dark:text-gray-200 group-hover/author:text-primary-600 transition-colors">{{ $post->user->name }}</span>
+                                </a>
                                 <div class="flex items-center text-gray-400 dark:text-gray-500 text-xs">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                                     {{ $post->comments_count }}
