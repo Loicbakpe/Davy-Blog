@@ -4,77 +4,88 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 overflow-hidden">
-    <!-- Abstract Background Pattern -->
-    <div class="absolute inset-0 pointer-events-none w-full h-full overflow-hidden opacity-30 dark:opacity-20 z-0">
-        <svg class="absolute -top-24 -right-24 w-96 h-96 text-indigo-50 dark:text-indigo-900/30 blur-3xl rounded-full" fill="currentColor" viewBox="0 0 100 100"></svg>
-        <svg class="absolute top-1/2 left-0 w-64 h-64 text-purple-50 dark:text-purple-900/30 blur-3xl rounded-full transform -translate-y-1/2 -translate-x-1/2" fill="currentColor" viewBox="0 0 100 100"></svg>
+<section class="relative bg-surface-light dark:bg-surface-darker overflow-hidden border-b border-gray-100 dark:border-white/5">
+    <!-- Abstract Background Pattern (Subtle & Elegant) -->
+    <div class="absolute inset-0 pointer-events-none w-full h-full overflow-hidden z-0">
+        <!-- Glow accents -->
+        <div class="absolute -top-32 -right-32 w-[30rem] h-[30rem] bg-primary-400/10 dark:bg-primary-600/20 blur-[100px] rounded-full mix-blend-multiply dark:mix-blend-screen"></div>
+        <div class="absolute top-1/2 -left-32 w-[25rem] h-[25rem] bg-accent-400/10 dark:bg-accent-600/10 blur-[80px] rounded-full mix-blend-multiply dark:mix-blend-screen"></div>
+        <!-- Dot pattern -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTMyLSAxNy0gMjExLCAwLjA1KSIvPjwvc3ZnPg==')] dark:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LSAyNTUtIDI1NSwgMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)] z-0"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 pb-24 md:pt-24 md:pb-32">
-        <div class="text-center max-w-3xl mx-auto">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 font-serif">
-                Explorez le monde du <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Développement Web</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 font-sans leading-relaxed">
-                Tutoriels, astuces et réflexions autour de Laravel, de l'écosystème PHP, et du développement moderne.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#recent-posts" class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all duration-300">
-                    Découvrir les articles
-                </a>
-                <a href="#" class="inline-flex justify-center items-center px-6 py-3 border border-gray-300 dark:border-slate-700 text-base font-medium rounded-full text-gray-700 dark:text-gray-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all duration-300">
-                    S'abonner à la newsletter
-                </a>
-            </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-28 md:pt-32 md:pb-40 flex flex-col items-center text-center">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-primary-600 dark:bg-primary-900/30 dark:text-primary-300 mb-6 ring-1 ring-inset ring-primary-500/20">
+            Design & Code
+        </span>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 font-serif max-w-4xl leading-[1.1]">
+            L'élégance du <br class="hidden sm:block">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500">Développement Web</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 font-sans leading-relaxed max-w-2xl">
+            Plongez au cœur de l'écosystème Laravel avec des tutoriels détaillés, des astuces d'architecture et des réflexions sur le design UI/UX moderne.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
+            <a href="#recent-posts" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-medium rounded-2xl text-white bg-primary-600 hover:bg-primary-700 shadow-[0_4px_14px_0_rgba(124,58,237,0.39)] hover:shadow-[0_6px_20px_rgba(124,58,237,0.23)] hover:-translate-y-0.5 transition-all duration-200">
+                Explorer les articles
+            </a>
+            <a href="{{ route('about') }}" class="inline-flex justify-center items-center px-8 py-4 border border-gray-200 dark:border-white/10 text-base font-medium rounded-2xl text-gray-700 dark:text-gray-200 bg-white/50 dark:bg-surface-dark/50 backdrop-blur-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-200">
+                En savoir plus
+            </a>
         </div>
     </div>
 </section>
 
 <!-- Featured Posts -->
 @if($featuredPosts->count() > 0)
-<section class="py-16 bg-gray-50 dark:bg-slate-800/50">
+<section class="py-20 bg-gray-50/50 dark:bg-surface-dark/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                En Vedette
-            </h2>
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif tracking-tight">À la une</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">Notre sélection des articles incontournables.</p>
+            </div>
+            <div class="mt-4 md:mt-0 hidden md:block">
+                <a href="{{ route('posts.index') }}" class="text-sm font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 transition flex items-center gap-1 group">
+                    Tous les articles <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($featuredPosts as $post)
-            <article class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow group flex flex-col h-full">
-                <div class="relative h-48 sm:h-56 w-full overflow-hidden bg-gray-200 dark:bg-slate-800">
+            <article class="bg-white dark:bg-surface-dark rounded-[1.5rem] shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-white/5 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
+                <div class="relative h-56 lg:h-64 w-full overflow-hidden bg-gray-100 dark:bg-surface-darker">
                     @if($post->cover_image)
-                        <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    @else
-                        <div class="w-full h-full flex items-center justify-center text-gray-400 dark:text-slate-600">
-                            <svg class="w-12 h-12 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        </div>
+                        <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                     @endif
-                    <div class="absolute top-4 left-4">
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold backdrop-blur-md bg-white/80 dark:bg-slate-900/80" style="color: {{ $post->category->color }}">
+                    <!-- Overlay Gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-gray-900/0 to-transparent opacity-60"></div>
+                    <div class="absolute top-4 left-4 z-10">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/90 dark:bg-surface-dark/90 backdrop-blur text-gray-900 dark:text-white shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+                            <span class="w-2 h-2 rounded-full mr-2" style="background-color: {{ $post->category->color }}"></span>
                             {{ $post->category->name }}
                         </span>
                     </div>
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-2 flex items-center justify-between">
+                <div class="p-6 md:p-8 flex flex-col flex-grow relative">
+                    <div class="text-xs font-medium text-primary-600 dark:text-primary-400 mb-3 flex items-center justify-between">
                         <span>{{ $post->published_at->format('d M Y') }}</span>
-                        <span>{{ ceil(str_word_count(strip_tags($post->body)) / 200) }} min de lecture</span>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 font-serif line-clamp-2 leading-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                        <a href="#">{{ $post->title }}</a>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 font-serif line-clamp-2 leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                        <a href="{{ route('posts.show', $post) }}"><span class="absolute inset-0"></span>{{ $post->title }}</a>
                     </h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4 flex-grow">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-6 flex-grow leading-relaxed">
                         {{ $post->excerpt }}
                     </p>
-                    <div class="flex items-center mt-auto pt-4 border-t border-gray-100 dark:border-slate-800">
-                        <div class="h-8 w-8 rounded-full bg-indigo-100 dark:bg-slate-800 flex items-center justify-center text-indigo-700 dark:text-indigo-400 font-bold text-sm">
+                    <div class="flex items-center mt-auto pt-4 relative z-20 pointer-events-none">
+                        <div class="h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-700 dark:text-primary-300 font-bold text-sm ring-2 ring-white dark:ring-surface-dark">
                             {{ substr($post->user->name, 0, 1) }}
                         </div>
-                        <span class="ml-2 text-sm font-medium text-gray-900 dark:text-white">{{ $post->user->name }}</span>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $post->user->name }}</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ ceil(str_word_count(strip_tags($post->body)) / 200) }} min de lecture</p>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -85,95 +96,87 @@
 @endif
 
 <!-- Main Content Grid -->
-<section id="recent-posts" class="py-16">
+<section id="recent-posts" class="py-20 lg:py-28 bg-surface-light dark:bg-surface-darker">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             
             <!-- Left Column: Recent Posts -->
-            <div class="lg:col-span-2">
-                <div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-200 dark:border-slate-800">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white font-serif">Articles Récents</h2>
-                    <a href="#" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center gap-1">
-                        Voir tout <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </a>
+            <div class="lg:col-span-8">
+                <div class="flex items-center justify-between mb-10">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif tracking-tight">Dernières publications</h2>
                 </div>
 
-                <div class="space-y-10">
+                <div class="space-y-8">
                     @forelse($recentPosts as $post)
-                    <article class="group flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-full md:w-1/3 shrink-0">
-                            <a href="#" class="block relative h-48 md:h-36 w-full rounded-xl overflow-hidden bg-gray-200 dark:bg-slate-800">
+                    <article class="group relative flex flex-col sm:flex-row gap-6 items-start p-4 sm:p-6 rounded-[1.5rem] bg-white dark:bg-surface-dark border border-transparent hover:border-gray-100 dark:hover:border-white/5 hover:shadow-soft dark:hover:shadow-soft-dark transition-all duration-300">
+                        <div class="w-full sm:w-48 h-48 sm:h-auto sm:aspect-square shrink-0">
+                            <div class="relative w-full h-full rounded-2xl overflow-hidden bg-gray-100 dark:bg-surface-darker">
                                 @if($post->cover_image)
-                                    <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->title }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
                                 @else
-                                    <div class="w-full h-full flex items-center justify-center text-gray-400 dark:text-slate-600">
+                                    <div class="w-full h-full flex items-center justify-center text-gray-300 dark:text-slate-600">
                                         <svg class="w-8 h-8 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                     </div>
                                 @endif
-                                <div class="absolute inset-0 ring-1 ring-inset ring-black/10 dark:ring-white/10 rounded-xl"></div>
-                            </a>
-                        </div>
-                        <div class="flex flex-col justify-center">
-                            <div class="flex items-center gap-3 text-sm mb-2">
-                                <span class="font-medium" style="color: {{ $post->category->color }}">{{ $post->category->name }}</span>
-                                <span class="text-gray-300 dark:text-slate-700">&bull;</span>
-                                <time class="text-gray-500 dark:text-gray-400" datetime="{{ $post->published_at }}">{{ $post->published_at->format('d M Y') }}</time>
+                                <div class="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/10 rounded-2xl"></div>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 font-serif leading-snug group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                                <a href="#">{{ $post->title }}</a>
+                        </div>
+                        <div class="flex flex-col justify-center h-full">
+                            <div class="flex items-center gap-3 text-xs font-semibold tracking-wide uppercase text-gray-500 dark:text-gray-400 mb-3">
+                                <span style="color: {{ $post->category->color }}">{{ $post->category->name }}</span>
+                                <span>&bull;</span>
+                                <time datetime="{{ $post->published_at }}">{{ $post->published_at->format('d M, Y') }}</time>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 font-serif leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                <a href="{{ route('posts.show', $post) }}"><span class="absolute inset-0"></span>{{ $post->title }}</a>
                             </h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-base line-clamp-2 leading-relaxed mb-3">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 leading-relaxed mb-4">
                                 {{ $post->excerpt }}
                             </p>
-                            <div class="flex items-center mt-auto">
+                            <div class="mt-auto flex items-center gap-2">
                                 <span class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ $post->user->name }}</span>
                             </div>
                         </div>
                     </article>
                     @empty
-                    <div class="text-center py-12 bg-gray-50 dark:bg-slate-800/50 rounded-2xl border border-gray-100 dark:border-slate-700">
-                        <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-slate-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5L18.5 7M4 6h16M4 10h16M4 14h16"></path>
-                        </svg>
-                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">Aucun article</h3>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Revenez bientôt pour découvrir nos nouvelles publications.</p>
+                    <div class="text-center py-20 px-6 rounded-[2rem] border-2 border-dashed border-gray-200 dark:border-white/10">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white font-serif">Aucun article publié.</h3>
+                        <p class="mt-2 text-gray-500 dark:text-gray-400">Revenez très bientôt pour découvrir nos contenus.</p>
                     </div>
                     @endforelse
                 </div>
 
-                <!-- Pagination (simple pour la home, on affichera le reste via la page blog) -->
                 @if($recentPosts->hasPages())
-                <div class="mt-10 pt-6 border-t border-gray-100 dark:border-slate-800">
+                <div class="mt-12 pt-8">
                     {{ $recentPosts->links() }}
                 </div>
                 @endif
             </div>
 
             <!-- Right Column: Sidebar -->
-            <div class="lg:col-span-1 space-y-10">
+            <div class="lg:col-span-4 space-y-10">
                 <!-- Search Widget -->
-                <div class="bg-gray-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-gray-100 dark:border-slate-700">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 font-serif">Recherche</h3>
-                    <form action="#" method="GET" class="relative">
-                        <input type="text" name="q" placeholder="Rechercher un article..." class="w-full pl-10 pr-4 py-2.5 rounded-lg border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm shadow-sm transition-all pb">
-                        <svg class="absolute left-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <form action="{{ route('posts.index') }}" method="GET">
+                        <input type="text" name="q" placeholder="Rechercher un article..." class="block w-full pl-11 pr-4 py-3.5 border-none rounded-2xl bg-white dark:bg-surface-dark shadow-soft dark:shadow-soft-dark text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 transition-shadow text-sm">
                     </form>
                 </div>
 
-                <!-- Categories Widget -->
-                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 overflow-hidden shadow-sm">
-                    <div class="p-6 border-b border-gray-100 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-800/30">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white font-serif">Catégories</h3>
-                    </div>
-                    <ul class="divide-y divide-gray-100 dark:divide-slate-800">
+                <!-- Categories -->
+                <div class="bg-white dark:bg-surface-dark rounded-3xl shadow-soft dark:shadow-soft-dark border border-gray-50 dark:border-white/5 overflow-hidden p-1">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white px-5 pt-6 pb-4 font-serif">Catégories</h3>
+                    <ul class="space-y-1 p-2">
                         @foreach($categories as $category)
                         <li>
-                            <a href="#" class="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors group">
-                                <span class="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
-                                    <span class="w-3 h-3 rounded-full" style="background-color: {{ $category->color }}"></span>
+                            <a href="{{ route('categories.show', $category) }}" class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
+                                <span class="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: {{ $category->color }}"></span>
                                     {{ $category->name }}
                                 </span>
-                                <span class="bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-400 py-0.5 px-2.5 rounded-full text-xs font-semibold group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors">
+                                <span class="bg-gray-100 dark:bg-surface-darker text-gray-500 dark:text-gray-400 py-1 px-3 rounded-lg text-xs font-semibold group-hover:bg-primary-50 group-hover:text-primary-600 dark:group-hover:bg-primary-900/20 transition-colors">
                                     {{ $category->posts_count }}
                                 </span>
                             </a>
@@ -182,16 +185,26 @@
                     </ul>
                 </div>
 
-                <!-- About Widget -->
-                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-indigo-900/20 rounded-2xl p-6 border border-indigo-100 dark:border-indigo-500/20">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 font-serif">À propos du Blog</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                        Bienvenue sur Davy Blog. Je partage ici mes connaissances sur la stack Laravel, Vue.js, TailwindCSS et l'art de concevoir des applications web élégantes et rapides.
-                    </p>
-                    <a href="#" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 inline-flex items-center gap-1 group">
-                        En savoir plus 
-                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
+                <!-- Newsletter Widget -->
+                <div class="bg-gradient-to-br from-primary-600 to-primary-800 rounded-3xl p-8 text-white relative overflow-hidden shadow-glow">
+                    <!-- Decor -->
+                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white opacity-10 blur-2xl"></div>
+                    <div class="absolute bottom-0 left-0 -ml-8 -mb-8 w-24 h-24 rounded-full bg-accent-400 opacity-20 blur-xl"></div>
+                    
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold mb-3 font-serif">Abonnez-vous</h3>
+                        <p class="text-primary-100 text-sm mb-6 leading-relaxed">
+                            Recevez les meilleurs articles de développement web, tutos Laravel, directement dans votre boîte de réception. Sans spam.
+                        </p>
+                        <form class="space-y-3">
+                            <div>
+                                <input type="email" placeholder="votre@email.com" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-primary-200 focus:ring-2 focus:ring-white focus:border-transparent text-sm backdrop-blur-sm">
+                            </div>
+                            <button type="submit" class="w-full bg-white text-primary-700 hover:bg-primary-50 px-4 py-3 rounded-xl text-sm font-bold transition-colors shadow-sm">
+                                Je m'abonne
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
