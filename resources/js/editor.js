@@ -1,4 +1,5 @@
 import EasyMDE from 'easymde';
+import 'easymde/dist/easymde.min.css';
 
 // Initialize editor only if the element exists (admin post forms)
 document.addEventListener('DOMContentLoaded', function () {

@@ -72,7 +72,7 @@
                         </a>
                         <div class="p-6 md:p-8 flex flex-col flex-grow relative">
                             <div class="text-xs font-medium text-primary-600 dark:text-primary-400 mb-3 flex items-center justify-between">
-                                <time datetime="{{ $post->published_at }}">{{ $post->published_at->format('d M Y') }}</time>
+                                <time datetime="{{ $post->published_at }}">{{ $post->published_at?->format('d M Y') ?? 'Non publié' }}</time>
                             </div>
                             <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 font-serif line-clamp-2 leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                                 <a href="{{ route('posts.show', $post) }}"><span class="absolute inset-0"></span>{{ $post->title }}</a>

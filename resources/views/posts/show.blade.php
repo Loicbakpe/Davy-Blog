@@ -10,7 +10,9 @@
 @if($post->cover_image)
     @section('og_image', asset('storage/' . $post->cover_image))
 @endif
-    <meta property="article:published_time" content="{{ $post->published_at->toIso8601String() }}">
+    @if($post->published_at)
+        <meta property="article:published_time" content="{{ $post->published_at->toIso8601String() }}">
+    @endif
     <meta property="article:author" content="{{ $post->user->name }}">
     <meta property="article:section" content="{{ $post->category->name }}">
 @endsection
@@ -55,7 +57,7 @@
             <div class="flex items-center gap-6 bg-surface-dark/50 px-5 py-2 rounded-2xl backdrop-blur-sm border border-white/5">
                 <div class="flex items-center">
                     <svg class="w-4 h-4 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    <time datetime="{{ $post->published_at }}">{{ $post->published_at->format('d M Y') }}</time>
+                    <time datetime="{{ $post->published_at }}">{{ $post->published_at?->format('d M Y') ?? 'Récemment' }}</time>
                 </div>
                 <div class="flex items-center">
                     <svg class="w-4 h-4 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -232,7 +234,7 @@
                                     {{ $related->title }}
                                 </h4>
                                 <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                                    <time>{{ $related->published_at->format('d/m/Y') }}</time>
+                                    <time>{{ $related->published_at?->format('d/m/Y') ?? 'Récemment' }}</time>
                                     <span class="mx-2">&bull;</span>
                                     <span>{{ $related->views }} vues</span>
                                 </div>

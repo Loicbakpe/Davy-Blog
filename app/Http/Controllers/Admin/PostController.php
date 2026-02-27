@@ -34,7 +34,7 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:posts,title',
             'category_id' => 'required|exists:categories,id',
             'excerpt' => 'required|string',
             'body' => 'required|string',
@@ -79,7 +79,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:posts,title,' . $post->id,
             'category_id' => 'required|exists:categories,id',
             'excerpt' => 'required|string',
             'body' => 'required|string',

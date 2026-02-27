@@ -70,7 +70,7 @@
                 </div>
                 <div class="p-6 md:p-8 flex flex-col flex-grow relative">
                     <div class="text-xs font-medium text-primary-600 dark:text-primary-400 mb-3 flex items-center justify-between">
-                        <span>{{ $post->published_at->format('d M Y') }}</span>
+                        <span>{{ $post->published_at?->format('d M Y') ?? 'Récemment' }}</span>
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 font-serif line-clamp-2 leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                         <a href="{{ route('posts.show', $post) }}"><span class="absolute inset-0"></span>{{ $post->title }}</a>
@@ -129,7 +129,7 @@
                             <div class="flex items-center gap-3 text-xs font-semibold tracking-wide uppercase text-gray-500 dark:text-gray-400 mb-3">
                                 <span style="color: {{ $post->category->color }}">{{ $post->category->name }}</span>
                                 <span>&bull;</span>
-                                <time datetime="{{ $post->published_at }}">{{ $post->published_at->format('d M, Y') }}</time>
+                                <time datetime="{{ $post->published_at }}">{{ $post->published_at?->format('d M, Y') ?? 'Récemment' }}</time>
                             </div>
                             <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 font-serif leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                                 <a href="{{ route('posts.show', $post) }}"><span class="absolute inset-0"></span>{{ $post->title }}</a>
